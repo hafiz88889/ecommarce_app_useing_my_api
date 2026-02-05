@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
+      title: "Ecommarce Using My APi",
       routerConfig: AppRouter.appRoute,
     );
   }
