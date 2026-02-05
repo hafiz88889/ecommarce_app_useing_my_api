@@ -15,12 +15,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState>{
   HomeBloc():super (HomeState()){
     on<LoadHome>((event, emit) async{
       emit (state.CopyWith(homeStatus: HomeStatus.loading));
-      try{
-       CommonResponseObject<Result<ProductModel>>  responseObject = await homeService.getPageableData(endpoint: 'products', requestBody: event.requestBody, fromJsonT: (json)=>ProductModel.fromJson(json));
-       emit (state.CopyWith(homeStatus: HomeStatus.success,productList: responseObject.result?.itemList??[],requestBody:event.requestBody));
-      }catch(ex){
-        emit(state.CopyWith(homeStatus: HomeStatus.error,error: ex.toString()));
-      }
+      // try{
+      //  CommonResponseObject<Result<ProductModel>>  responseObject = await homeService.getPageableData(endpoint: 'products', requestBody: event.requestBody, fromJsonT: (json)=>ProductModel.fromJson(json));
+      //  emit (state.CopyWith(homeStatus: HomeStatus.success,productList: responseObject.result?.itemList??[],requestBody:event.requestBody));
+      // }catch(ex){
+      //   emit(state.CopyWith(homeStatus: HomeStatus.error,error: ex.toString()));
+      // }
     });
   }
 }
