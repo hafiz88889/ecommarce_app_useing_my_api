@@ -1,4 +1,7 @@
+import 'package:ecommarce_myapi/app/main/models/home_page/bloc/bloc.dart';
 import 'package:ecommarce_myapi/app/main/models/home_page/view/home_page_view.dart';
+import 'package:ecommarce_myapi/app/main/models/product_page/bloc/product_bloc.dart';
+import 'package:ecommarce_myapi/app/main/models/product_page/view/product_view.dart';
 import 'package:ecommarce_myapi/app/main/models/splash_page/view/splash_page_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -20,12 +23,18 @@ class AppRouter {
         child: SplashPageView(),
         ),
       ),
-      GoRoute(path: Routes.HOME,
-        builder: (context, state)=>BlocProvider(create: (context)=>SplashScreenBloc(),
+      GoRoute(
+        path: Routes.HOME,
+        builder: (context, state)=>BlocProvider(create: (context)=>HomeBloc(),
         child: HomePageView(),
         ),
       ),
-
+      GoRoute(
+        path: Routes.PRODUCT_PAGE,
+        builder: (context, state)=>BlocProvider(create: (context)=>ProductBloc(),
+          child: ProductView(),
+        ),
+      ),
     ],
   );
 }

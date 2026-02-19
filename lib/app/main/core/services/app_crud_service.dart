@@ -29,10 +29,16 @@ import 'custom_http_client.dart';
      return CommonResponseObject<T>.fromJson(response, fromJsonT);
    }
 
-   Future<CommonResponseObject<Result<T>>> getPageableData({required String endpoint, required RequestBody requestBody,required T Function(Map<String, dynamic>) fromJsonT}) async{
-     final response = await httpClient.post(uri: "$uri$endpoint", data: requestBody.toJson(),token: await SharedPreferencesHelper.getToken());
-    debugPrint("Pageable Response : $response");
-     return CommonResponseObject<Result<T>>.fromJson(response, (resultJson) => Result.fromJson(resultJson, fromJsonT),);
+   // Future<CommonResponseObject<Result<T>>> getPageableData({required String endpoint, required RequestBody requestBody,required T Function(Map<String, dynamic>) fromJsonT}) async{
+   //   final response = await httpClient.post(uri: "$uri$endpoint", data: requestBody.toJson(),token: await SharedPreferencesHelper.getToken());
+   //  debugPrint("Pageable Response : $response");
+   //   return CommonResponseObject<Result<T>>.fromJson(response, (resultJson) => Result.fromJson(resultJson, fromJsonT),);
+   // }
+   Future<CommonResponseObject<Result<T>>> getPageableData<T>({required String endpoint, required RequestBody requestBody, required T Function(Map<String, dynamic>) fromJsonT,}) async {
+     final response = await httpClient.post(uri: "$uri$endpoint", data: requestBody.toJson(), token: await SharedPreferencesHelper.getToken(),);
+     debugPrint("Pageable Response : $response");
+     return CommonResponseObject<Result<T>>.fromJson(response, (resultJson) => Result<T>.fromJson(resultJson, fromJsonT),
+     );
    }
 
    Future<CommonResponseObject<String>> saveInfo({required Map<String,dynamic> body,required String endPoint}) async{
